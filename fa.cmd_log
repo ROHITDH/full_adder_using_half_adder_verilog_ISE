@@ -1,0 +1,7 @@
+xst -intstyle ise -ifn "F:/Xilinx/14.7/ISE_DS/full_adder_using_half_adder/fa.xst" -ofn "F:/Xilinx/14.7/ISE_DS/full_adder_using_half_adder/fa.syr" 
+xst -intstyle ise -ifn "F:/Xilinx/14.7/ISE_DS/full_adder_using_half_adder/fa.xst" -ofn "F:/Xilinx/14.7/ISE_DS/full_adder_using_half_adder/fa.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc fa.ucf -p xc6slx9-tqg144-2 fa.ngc fa.ngd  
+map -intstyle ise -p xc6slx9-tqg144-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o fa_map.ncd fa.ngd fa.pcf 
+par -w -intstyle ise -ol high -mt off fa_map.ncd fa.ncd fa.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml fa.twx fa.ncd -o fa.twr fa.pcf -ucf fa.ucf 
+bitgen -intstyle ise -f fa.ut fa.ncd 
